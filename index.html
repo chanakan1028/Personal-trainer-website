@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --cream: #FBF7F4;
+    --cream-2: #F6EFEA;
+    --ink: #2E2024;
+    --ink-soft: #5C4A4E;
+    --rose: #B86B74;
+    --rose-deep: #8F4A52;
+    --blush: #F0D8D3;
+    --blush-2: #E7C6C0;
+    --line: #E4D6CF;
+    --white: #FFFDFB;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Prompt', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3{
+    font-family: 'Trirong', serif;
+    font-weight: 500;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251,247,244,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 0;
+  }
+
+  .logo{
+    font-family:'Trirong', serif;
+    font-size: 44px;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .logo span{ color: var(--rose); }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:32px;
+    margin:0; padding:0;
+  }
+
+  nav a{
+    text-decoration:none;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+    cursor:pointer;
+  }
+
+  nav a:hover{ color: var(--ink); border-color: var(--rose); }
+
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+
+  .lang-toggle{
+    display:inline-flex;
+    padding: 3px;
+    background: var(--cream-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+
+  .lang-toggle button{
+    border:none;
+    background: transparent;
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-family:'Prompt', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor:pointer;
+    transition: background .2s, color .2s;
+  }
+
+  .lang-toggle button.active{
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .icon-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    text-decoration:none;
+    transition: border-color .2s, color .2s;
+    flex-shrink:0;
+  }
+  .icon-link:hover{ border-color: var(--rose); color: var(--rose-deep); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 14.5px;
+    font-weight: 500;
+    text-decoration:none;
+    cursor:pointer;
+    border: 1px solid transparent;
+    transition: background .2s, color .2s, border-color .2s, transform .15s;
+    font-family:'Prompt', sans-serif;
+  }
+
+  .btn:active{ transform: scale(0.98); }
+
+  .btn-primary{
+    background: var(--ink);
+    color: var(--white);
+  }
+  .btn-primary:hover{ background: var(--rose-deep); }
+
+  .btn-outline{
+    background: transparent;
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .btn-outline:hover{ background: var(--ink); color: var(--white); }
+
+  .btn-sm{ padding: 9px 18px; font-size: 13.5px; }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding: 96px 0 80px;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items:center;
+  }
+
+  .kicker{
+    font-size: 15px;
+    color: var(--rose-deep);
+    margin-bottom: 18px;
+    font-family:'Trirong', serif;
+    font-style: italic;
+  }
+
+  .hero h1{
+    font-size: 46px;
+    line-height: 1.25;
+    font-style: italic;
+  }
+
+  .hero p{
+    margin-top: 22px;
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  .hero-cta{
+    display:flex;
+    gap: 16px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+
+  .hero-art{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .hero-art svg{ width: 100%; height: auto; max-width: 380px; }
+
+  /* ---------- Section shell ---------- */
+
+  section{ padding: 88px 0; }
+
+  .section-head{
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+
+  .section-head h2{
+    font-size: 32px;
+    font-style: italic;
+  }
+
+  .section-head p{
+    margin-top: 14px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  #packages{ background: var(--cream-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* ---------- About ---------- */
+
+  .about-grid{
+    display:grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 48px;
+    align-items:center;
+  }
+
+  .photo-placeholder{
+    aspect-ratio: 1;
+    border-radius: 24px;
+    background: var(--blush);
+    border: 1px dashed var(--rose);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 24px;
+    color: var(--rose-deep);
+    font-size: 14px;
+  }
+
+  .about-text p{
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .about-text .placeholder-box{
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    font-style: italic;
+    background: var(--white);
+  }
+
+  /* ---------- Packages ---------- */
+
+  .rates-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .rate-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 36px 32px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .rate-card.featured{
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
+  }
+
+  .rate-card.featured h3,
+  .rate-card.featured .rate-price{ color: var(--white); }
+
+  .rate-card.featured .rate-desc,
+  .rate-card.featured li{ color: #E8DCD6; }
+
+  .rate-card.featured li::before{ color: var(--blush); }
+
+  .rate-type{
+    font-size: 12.5px;
+    color: var(--rose-deep);
+    margin-bottom: 10px;
+  }
+
+  .rate-card.featured .rate-type{ color: var(--blush); }
+
+  .rate-card h3{
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .rate-desc{
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+
+  .rate-price{
+    font-family:'Trirong', serif;
+    font-size: 32px;
+    font-style: italic;
+    margin: 22px 0 20px;
+  }
+
+  .rate-price span{
+    font-family:'Prompt', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-left: 6px;
+  }
+
+  .rate-card.featured .rate-price span{ color: #E8DCD6; }
+
+  .rate-card ul{
+    list-style:none;
+    padding:0; margin: 0 0 28px;
+    flex-grow:1;
+  }
+
+  .rate-card li{
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding-left: 18px;
+    position:relative;
+    margin-bottom: 12px;
+  }
+
+  .rate-card li::before{
+    content: "—";
+    position:absolute;
+    left:0;
+    color: var(--rose);
+  }
+
+  .rate-card.featured .location-note{ color: #E8DCD6; }
+
+  .location-note{
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: -8px;
+    margin-bottom: 20px;
+  }
+
+  .rate-note{
+    margin-top: 36px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Trirong', serif;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    background: var(--ink);
+    color: var(--blush);
+    padding: 64px 0 32px;
+  }
+
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap: 32px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .footer-quote{
+    font-family:'Trirong', serif;
+    font-style: italic;
+    font-size: 22px;
+    max-width: 32ch;
+    color: var(--white);
+  }
+
+  .footer-links{
+    display:flex;
+    gap: 48px;
+  }
+
+  .footer-col h4{
+    font-family:'Prompt', sans-serif;
+    font-size: 13px;
+    color: #C9A9A1;
+    margin: 0 0 14px;
+    font-weight:500;
+  }
+
+  .footer-col a{
+    display:block;
+    text-decoration:none;
+    color: var(--blush);
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+
+  .footer-col a:hover{ opacity: 1; text-decoration:underline; }
+
+  .footer-bottom{
+    padding-top: 24px;
+    font-size: 13px;
+    color: #B78E86;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 860px){
+    .wrap{ padding: 0 22px; }
+    nav ul{ display:none; }
+    .logo{ font-size: 32px; }
+    .hero{ padding: 56px 0 56px; }
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-art{ order:-1; }
+    .hero h1{ font-size: 34px; }
+    section{ padding: 64px 0; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .rates-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px){
+    .footer-top{ flex-direction:column; }
+    .footer-links{ gap: 32px; }
+    .logo{ font-size: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="logo">Bloom<span>.</span></div>
+    <nav>
+      <ul>
+        <li><a href="#about" data-th="เกี่ยวกับฉัน" data-en="About Me">เกี่ยวกับฉัน</a></li>
+        <li><a href="#packages" data-th="แพ็กเกจ" data-en="Packages">แพ็กเกจ</a></li>
+        <li><a href="#contact" data-th="ติดต่อ" data-en="Contact">ติดต่อ</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="active" data-lang="th">TH</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a class="icon-link" href="#" title="LinkedIn" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C19.9 8 21 10.13 21 13.5V23h-4v-8.5c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.45V23h-4V8z"/></svg>
+      </a>
+      <a class="btn btn-primary btn-sm" href="#packages" data-th="ดูแพ็กเกจ" data-en="See packages">ดูแพ็กเกจ</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker" data-th="เทรนเนอร์ส่วนตัว" data-en="Personal Trainer">เทรนเนอร์ส่วนตัว</div>
+      <h1 data-th="ร่างกายที่ดีขึ้น เริ่มต้นวันนี้" data-en="A better body starts today">ร่างกายที่ดีขึ้น เริ่มต้นวันนี้</h1>
+      <p data-th="โค้ชส่วนตัวที่จะช่วยคุณสร้างร่างกายในแบบที่คุณต้องการ ไม่ว่าจะเทรนออนไลน์จากที่ไหนก็ได้ หรือฝึกตัวต่อตัวที่ฟิตเนสในกรุงเทพฯ" data-en="A personal coach to help you build the body you want — whether you train online from anywhere, or in person at the gym in Bangkok.">โค้ชส่วนตัวที่จะช่วยคุณสร้างร่างกายในแบบที่คุณต้องการ ไม่ว่าจะเทรนออนไลน์จากที่ไหนก็ได้ หรือฝึกตัวต่อตัวที่ฟิตเนสในกรุงเทพฯ</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#packages" data-th="ดูแพ็กเกจ" data-en="See packages">ดูแพ็กเกจ</a>
+        <a class="btn btn-outline" href="#about" data-th="รู้จักฉันมากขึ้น" data-en="Get to know me">รู้จักฉันมากขึ้น</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="180" cy="180" r="150" fill="#F0D8D3"/>
+        <circle cx="180" cy="180" r="150" fill="none" stroke="#B86B74" stroke-width="1" stroke-dasharray="2 8"/>
+        <path d="M60 210 C 110 130, 150 260, 200 170 S 300 120, 320 150" stroke="#8F4A52" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="60" cy="210" r="6" fill="#8F4A52"/>
+        <circle cx="320" cy="150" r="6" fill="#8F4A52"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="photo-placeholder" data-th="ใส่รูปของคุณตรงนี้ภายหลัง" data-en="Your photo will go here">ใส่รูปของคุณตรงนี้ภายหลัง</div>
+    <div class="about-text">
+      <div class="section-head" style="margin-bottom:24px;">
+        <h2 data-th="เกี่ยวกับฉัน" data-en="About Me">เกี่ยวกับฉัน</h2>
+      </div>
+      <div class="placeholder-box" data-th="รายละเอียดเกี่ยวกับตัวฉัน ประสบการณ์ และแนวทางการเทรน จะใส่ตรงนี้ภายหลัง" data-en="Details about me, my experience, and my coaching approach will go here later.">
+        รายละเอียดเกี่ยวกับตัวฉัน ประสบการณ์ และแนวทางการเทรน จะใส่ตรงนี้ภายหลัง
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-th="แพ็กเกจเทรนนิ่ง" data-en="Training Packages">แพ็กเกจเทรนนิ่ง</h2>
+      <p data-th="เลือกรูปแบบที่เหมาะกับคุณ ไม่ว่าจะเทรนออนไลน์หรือฝึกตัวต่อตัว" data-en="Choose the format that suits you — train online or in person.">เลือกรูปแบบที่เหมาะกับคุณ ไม่ว่าจะเทรนออนไลน์หรือฝึกตัวต่อตัว</p>
+    </div>
+
+    <div class="rates-grid">
+
+      <div class="rate-card">
+        <div class="rate-type" data-th="ออนไลน์ · 6 สัปดาห์" data-en="Online · 6 weeks">ออนไลน์ · 6 สัปดาห์</div>
+        <h3 data-th="ออนไลน์เทรนนิ่ง" data-en="Online Training">ออนไลน์เทรนนิ่ง</h3>
+        <div class="rate-desc" data-th="โปรแกรมส่วนตัวพร้อมดูแลใกล้ชิดตลอด 6 สัปดาห์ ไม่ว่าคุณจะอยู่ที่ไหน" data-en="A personalized program with close support for 6 weeks, wherever you are.">โปรแกรมส่วนตัวพร้อมดูแลใกล้ชิดตลอด 6 สัปดาห์ ไม่ว่าคุณจะอยู่ที่ไหน</div>
+        <div class="rate-price">4,000 <span data-th="บาท / 6 สัปดาห์" data-en="THB / 6 weeks">บาท / 6 สัปดาห์</span></div>
+        <ul>
+          <li data-th="แผนโภชนาการ (Food Plan)" data-en="Food plan">แผนโภชนาการ (Food Plan)</li>
+          <li data-th="ตรวจฟอร์มท่าออกกำลังกายผ่านวิดีโอ" data-en="Workout form check via video">ตรวจฟอร์มท่าออกกำลังกายผ่านวิดีโอ</li>
+          <li data-th="ตอบคำถามได้ตลอดโปรแกรม" data-en="Ongoing Q&A support">ตอบคำถามได้ตลอดโปรแกรม</li>
+          <li data-th="เช็คอินความคืบหน้าสัปดาห์ละครั้ง" data-en="Weekly progress check-in">เช็คอินความคืบหน้าสัปดาห์ละครั้ง</li>
+        </ul>
+        <a class="btn btn-outline btn-sm" href="#contact" data-th="สนใจแพ็กเกจนี้" data-en="Interested in this package">สนใจแพ็กเกจนี้</a>
+      </div>
+
+      <div class="rate-card featured">
+        <div class="rate-type" data-th="ตัวต่อตัว · รายชั่วโมง" data-en="Private · Per hour">ตัวต่อตัว · รายชั่วโมง</div>
+        <h3 data-th="เทรนส่วนตัว 1:1" data-en="Private 1:1 Training">เทรนส่วนตัว 1:1</h3>
+        <div class="rate-desc" data-th="ฝึกตัวต่อตัวแบบเจาะลึก ดูแลฟอร์มและเทคนิคอย่างใกล้ชิด" data-en="Focused one-on-one training with close attention to form and technique.">ฝึกตัวต่อตัวแบบเจาะลึก ดูแลฟอร์มและเทคนิคอย่างใกล้ชิด</div>
+        <div class="rate-price">900 <span data-th="บาท / ชั่วโมง" data-en="THB / hour">บาท / ชั่วโมง</span></div>
+        <div class="location-note" data-th="สถานที่: Fitness Bravo พระราม 9" data-en="Location: Fitness Bravo, Rama 9">สถานที่: Fitness Bravo พระราม 9</div>
+        <ul>
+          <li data-th="เทรนตัวต่อตัวที่ฟิตเนส" data-en="In-person training at the gym">เทรนตัวต่อตัวที่ฟิตเนส</li>
+          <li data-th="ดูแลฟอร์มและเทคนิคแบบใกล้ชิด" data-en="Close attention to form and technique">ดูแลฟอร์มและเทคนิคแบบใกล้ชิด</li>
+          <li data-th="นัดเวลาได้ตามความสะดวก" data-en="Flexible scheduling">นัดเวลาได้ตามความสะดวก</li>
+        </ul>
+        <a class="btn btn-outline btn-sm" href="#contact" data-th="สนใจแพ็กเกจนี้" data-en="Interested in this package">สนใจแพ็กเกจนี้</a>
+      </div>
+
+    </div>
+
+    <div class="rate-note" data-th="รายละเอียดเพิ่มเติมของแต่ละแพ็กเกจจะใส่เพิ่มภายหลัง" data-en="More details for each package will be added later.">รายละเอียดเพิ่มเติมของแต่ละแพ็กเกจจะใส่เพิ่มภายหลัง</div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-quote" data-th="ไม่ต้องหักโหม แค่สม่ำเสมอ" data-en="You don't have to be extreme, just consistent.">ไม่ต้องหักโหม แค่สม่ำเสมอ</div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 data-th="เมนู" data-en="Menu">เมนู</h4>
+          <a href="#about" data-th="เกี่ยวกับฉัน" data-en="About Me">เกี่ยวกับฉัน</a>
+          <a href="#packages" data-th="แพ็กเกจ" data-en="Packages">แพ็กเกจ</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-th="ติดต่อ" data-en="Contact">ติดต่อ</h4>
+          <a href="#">LinkedIn</a>
+          <a href="#" data-th="ช่องทางติดต่ออื่น (เพิ่มภายหลัง)" data-en="Other contact info (to be added)">ช่องทางติดต่ออื่น (เพิ่มภายหลัง)</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Bloom Coaching</span>
+      <span data-th="เนื้อหาชั่วคราว — จะอัปเดตภายหลัง" data-en="Placeholder content — to be updated">เนื้อหาชั่วคราว — จะอัปเดตภายหลัง</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const langButtons = document.querySelectorAll(".lang-toggle button");
+  const translatable = document.querySelectorAll("[data-th][data-en]");
+
+  function setLang(lang){
+    translatable.forEach(el => {
+      el.textContent = el.dataset[lang];
+    });
+    langButtons.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+    document.documentElement.lang = lang;
+  }
+
+  langButtons.forEach(btn => {
+    btn.addEventListener("click", () => setLang(btn.dataset.lang));
+  });
+</script>
+
+</body>
+</html>
